@@ -54,7 +54,7 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
       EControl.selectOne(req, res, dogs)
     })
 
-    app.listen('3000', () => {
+    app.listen('8080', () => {
       console.log('Está rodando!')
     })
   })
