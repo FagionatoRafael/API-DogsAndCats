@@ -10,13 +10,17 @@ app.use(cors())
 dotenv.config()
 
 const url: any = process.env.DB_CONNECTION
-
+console.log("alooooo")
 MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(client => {
     
     const db = client.db('DogsAndCats')
     const dogs = db.collection('Dogs')
     const cats = db.collection('Cats')
+
+    app.get('/', (req, res) => {
+      res.send('API de raças de cães e gatos.')
+    })
     
     //Rotas Cats
     //Adicionar os dados na coleção cats
