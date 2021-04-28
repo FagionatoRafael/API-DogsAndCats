@@ -10,7 +10,7 @@ app.use(cors())
 dotenv.config()
 
 const url: any = process.env.DB_CONNECTION
-console.log("alooooo")
+
 MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(client => {
     
