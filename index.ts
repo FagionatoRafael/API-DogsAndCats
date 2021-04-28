@@ -10,6 +10,7 @@ app.use(cors())
 dotenv.config()
 
 const url: any = process.env.DB_CONNECTION
+const port = process.env.PORT || 3000;
 
 MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(client => {
@@ -58,7 +59,7 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
       EControl.selectOne(req, res, dogs)
     })
 
-    app.listen('8080', () => {
+    app.listen(port, () => {
       console.log('Está rodando!')
     })
   })
