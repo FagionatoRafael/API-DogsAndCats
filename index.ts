@@ -1,7 +1,8 @@
-import dotenv from 'dotenv'
-import express, { Request, Response } from 'express'
+import * as dotenv from 'dotenv'
+var express = require('express')
+var cors = require('cors')
+import { Request, Response } from 'express'
 import { MongoClient } from 'mongodb'
-import cors from 'cors'
 import EControl from './src/controller/ExpressController'
 
 const app = express()
@@ -9,7 +10,7 @@ app.use(express.json())
 app.use(cors())
 dotenv.config()
 
-const url: any = process.env.DB_CONNECTION
+const url: string = encodeURI(process.env.DB_CONNECTION as string)
 const port = process.env.PORT || 3001;
 
 MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })

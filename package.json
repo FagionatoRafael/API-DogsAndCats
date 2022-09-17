@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn --ignore-watch node-modules--transpile-only index.ts"
+    "start:prod": "tsc --build && node dist/index.js",
+    "start:dev": "ts-node-dev --respawn --ignore-watch node-modules--transpile-only index.ts"
   },
   "author": "Rafael Fagionato",
   "license": "ISC",
