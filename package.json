@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rimraf dist",
     "build": "tsc --build",
     "heroku-postbuild": "NODE_ENV=dev npm install --omit --no-shrinkwrap && npm run build",
     "start:prod": "node dist/index.js",
