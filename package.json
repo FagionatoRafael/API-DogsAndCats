@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:prod": "tsc --build && node dist/index.js",
+    "build": "tsc --build",
+    "heroku-postbuild": "NODE_ENV=dev npm install --omit --no-shrinkwrap && npm run build",
+    "start:prod": "node dist/index.js",
     "start:dev": "ts-node-dev --respawn --ignore-watch node-modules--transpile-only index.ts"
   },
   "author": "Rafael Fagionato",
