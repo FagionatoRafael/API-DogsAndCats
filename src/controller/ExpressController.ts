@@ -22,7 +22,8 @@ class ExpressController implements IExpressController {
     selectAll(req: Request, res: Response, collection: Collection<any[]>) {
         collection.find().toArray()
         .then((result: any[]) => {
-            this.result = result
+            console.log(result)
+            this.result = result.sort((a, b) => {return a.id - b.id});
             res.json(this.result)
         })
         .catch((error: any) => console.error(error))
@@ -76,4 +77,4 @@ class ExpressController implements IExpressController {
     }
 }
 
-export default new ExpressController
+export default new ExpressController 

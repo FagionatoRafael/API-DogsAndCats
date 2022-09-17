@@ -10,7 +10,7 @@ app.use(cors())
 dotenv.config()
 
 const url: any = process.env.DB_CONNECTION
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(client => {
@@ -18,6 +18,8 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
     const db = client.db('DogsAndCats')
     const dogs = db.collection('Dogs')
     const cats = db.collection('Cats')
+    const dogVacc = db.collection('DogsVaccines')
+    const catVacc = db.collection('CatsVaccines')
 
     app.get('/', (req, res) => {
       res.send('API de raças de cães e gatos.')
@@ -54,10 +56,46 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
     app.get('/dogs/:id', (req, res) => {
       EControl.selectOneParams(req, res, dogs)
     })
-    //Seleciona um dados com o body na coleção cats
+    //Seleciona um dados com o body na coleção dogs
     app.get('/dog', (req, res) => {
       EControl.selectOne(req, res, dogs)
     })
+
+    //Rotas Dogs Vaccines 
+    //Adicionar os dados na coleção Dogs vaccines
+    app.post('/vaccines/dog', (req, res) => { 
+      EControl.postOne(req, res, dogVacc)
+    })
+    //Seleciona todos os dados na coleção Dogs vaccines
+    app.get('/vaccines/dog', (req, res) => {
+      EControl.selectAll(req, res, dogVacc)
+    })
+    //Seleciona um dados com a id na coleção Dogs  vaccines
+    app.get('/vaccines/dog/:id', (req, res) => {
+      EControl.selectOneParams(req, res, dogVacc)
+    })
+    // //Seleciona um dados com o body na coleção Dogs vaccines
+    // app.get('/dogs/vaccines', (req, res) => {
+    //   EControl.selectOne(req, res, dogVacc)
+    // })
+
+    //Rotas Cats Vaccines 
+    //Adicionar os dados na coleção Cats vaccines
+    app.post('/vaccines/cats', (req, res) => { 
+      EControl.postOne(req, res, catVacc)
+    })
+    //Seleciona todos os dados na coleção Cats vaccines
+    app.get('/vaccines/cats', (req, res) => {
+      EControl.selectAll(req, res, catVacc)
+    })
+    //Seleciona um dados com a id na coleção Cats  vaccines
+    app.get('/vaccines/cats/:id', (req, res) => {
+      EControl.selectOneParams(req, res, catVacc)
+    })
+    //Seleciona um dados com o body na coleção Cats vaccines
+    // app.get('/vaccines/cats', (req, res) => {
+    //   EControl.selectOne(req, res, catVacc)
+    // })
 
     app.listen(port, () => {
       console.log('Está rodando!')

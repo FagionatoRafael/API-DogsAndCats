@@ -20,5 +20,8 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.5",
     "ts-node-dev": "^1.1.6"
+  },
+  "engines": {
+    "node": "8"
   }
 }
